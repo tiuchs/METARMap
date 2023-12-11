@@ -4,8 +4,6 @@
 echo "Updating packages"
 sudo apt-get update && sudo apt-get upgrade -y
 
-python --version 
-pip3 --version 
 echo "Installing required packages"
 apt-get install python3 python3-pip git -y
 
@@ -40,6 +38,21 @@ KOPL
 K3R7 
 KLCH 
 K5R8' > airports
+
+## Set the number of LED lights
+CONFIG="/home/pi/metar.py"
+
+# If a line containing "LED_COUNT		= 50" exists
+if grep -Fq "LED_COUNT		= 50" $CONFIG
+then
+	# Replace the line
+	echo "LED_COUNT		= 50"
+	sed -i "s/LED_COUNT		= 50/LED_COUNT		= 21/g" $CONFIG
+else
+	# Create the definition
+	echo "LED_COUNT		= 50. Creating definition"
+	echo "" >> $CONFIG
+fi
 
 chmod +xr displaymetar.py
 chmod +xr lightsoff.sh
