@@ -61,10 +61,11 @@ chmod +xr pixelsoff.py
 chmod +xr refresh.sh
 
 echo "setting crontab"
-sudo sh -c 'cat <<EOF > /var/spool/cron/crontabs/root
-*/5 7-21 * * *  /home/pi/refresh.sh
-05 22 * * *     /home/pi/lightsoff.sh
-EOF'
+cat > /etc/cron.d/metarmap
+echo '*/5 7-21 * * * pi /home/pi/refresh.sh
+05 22 * * *    pi /home/pi/lightsoff.sh' >> /etc/cron.d/metarmap
+
+#EOF'
 sudo /etc/init.d/cron restart
 
 echo "Install complete, rebooting."
