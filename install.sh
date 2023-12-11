@@ -46,8 +46,8 @@ CONFIG="/home/pi/metar.py"
 if grep -Fq "LED_COUNT		= 50" $CONFIG
 then
 	# Replace the line
-	echo "LED_COUNT		= 50"
-	sed -i "s/LED_COUNT		= 50/LED_COUNT		= 21/g" $CONFIG
+	echo "LED_COUNT		= 20"
+	sed -i "s/LED_COUNT		= 50/LED_COUNT		= 20/g" $CONFIG
 else
 	# Create the definition
 	echo "LED_COUNT		= 50. Creating definition"
@@ -69,4 +69,4 @@ sudo /etc/init.d/cron restart
 
 echo "Install complete, rebooting."
 #reboot
-sudo python3 metarmap.py
+sudo python3 metar.py
